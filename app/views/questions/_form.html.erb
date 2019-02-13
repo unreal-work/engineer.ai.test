@@ -1,0 +1,11 @@
+<%= form_for question do |f| %>
+  <span><%= I18n.t('question.title') %></span>
+  <br>
+  <%= f.text_field :title, size: "61" %>
+  <br>
+  <span><%= I18n.t('question.description') %></span>
+  <br>
+  <%= f.text_area :description, size: "60x12" %>
+  <br>
+  <%= f.submit I18n.t('question.submit') %>
+<% end %>

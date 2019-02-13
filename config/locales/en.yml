@@ -30,4 +30,31 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  questions:
+    title: Questions
+    new: Add question
+
+  question:
+    title: Title
+    description: Description
+    submit: Submit
+    edit: Edit
+    follow: Follow
+    unfollow: UnFollow
+
+  answers:
+    title: Answers
+    new: Add answer
+
+  answer:
+    message: Message
+    submit: Submit
+
+  common:
+    sign_in: Sign In
+    sign_out: Sign Out
+    sign_up: Sign Up
+    back: Back
+
+
+

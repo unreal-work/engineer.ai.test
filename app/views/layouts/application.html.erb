@@ -14,11 +14,12 @@
       <%= link_to 'EngineerAiTest', root_path, class: "navbar-brand" %>
 
       <% if signed_in? %>
+        <%= link_to I18n.t('questions.title'), questions_path, class: "m-2 btn btn-primary" %>
         <span class="m-2"><%= current_user.email %></span>
-        <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "m-2 btn btn-secondary" %>
+        <%= link_to I18n.t('common.sign_out'), destroy_user_session_path, method: :delete, class: "m-2 btn btn-secondary" %>
       <% else %>
-          <%= link_to 'Sign in', user_session_path, class: "m-2 btn btn-success" %>
-          <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-primary" %>
+          <%= link_to I18n.t('common.sign_in'), user_session_path, class: "m-2 btn btn-success" %>
+          <%= link_to I18n.t('common.sign_up'), new_user_registration_path, class: "btn btn-primary" %>
       <% end %>
     </div>
 

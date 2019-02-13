@@ -1,0 +1,10 @@
+<div class="answer">
+  <%= form_for @question.answers.new do |f| %>
+    <%= f.hidden_field :question_id, value: @question.id %>
+    <span><%= I18n.t('answer.message') %></span>
+    <br>
+    <%= f.text_area :message, size: "60x5" %>
+    <br>
+    <%= f.submit I18n.t('answer.submit') %>
+  <% end %>
+</div>

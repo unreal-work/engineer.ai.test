@@ -1,0 +1,38 @@
+<div class="top-menu row centered-form center-block">
+  <div class="container col-md-offset-1">
+    <%= link_to I18n.t('common.back'), questions_path, class: "btn btn-secondary" %>
+    <% if current_user.id == @question.user_id %>
+      <%= link_to I18n.t('question.edit'), edit_question_path(@question), class: "btn btn-success" %>
+    <% end %>
+    <% if current_user.user_follow_questions.where(question: @question).exists? %>
+      <%= link_to I18n.t('question.unfollow'), unfollow_question_path(@question), class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to I18n.t('question.follow'), follow_question_path(@question), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="question">
+  <div class="details">
+    <h4><%= @question.title %></h4>
+    <hr>
+    <p><%= @question.description %></p>
+  </div>
+  <div class="answers">
+    <h4><%= I18n.t('answers.title') %></h4>
+    <hr>
+    <div class="list">
+      <ul class="list-group">
+        <% @question.answers.each do |answer| %>
+          <%= render 'answers/show', answer: answer %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<% unless current_user.id == @question.user_id %>
+  <hr>
+  <h4><%= I18n.t('answers.new') %></h4>
+  <%= render 'answers/new' %>
+<% end %>
