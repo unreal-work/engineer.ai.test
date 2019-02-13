@@ -1,3 +1,5 @@
+<% can_vote = answer.user_id != current_user.id %>
+
 <li class="list-group-item">
   <h5 class="list-group-item-heading">
     <%= answer.user.email %>
@@ -5,4 +7,17 @@
   <p class="list-group-item-text">
     <%= answer.message %>
   </p>
+
+  <div class="row">
+    <div class="container col-md-offset-1">
+      <% if can_vote %>
+        <%= link_to 'Upvote', vote_up_answer_path(answer) %>
+      <% end %>
+      <span><%= answer.votes.sum { |r| r.value ? 1 : 0 } %></span>
+      <% if can_vote %>
+        <%= link_to 'Downvote', vote_down_answer_path(answer) %>
+      <% end %>
+    </div>
+  </div>
+
 </li>

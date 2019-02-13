@@ -23,7 +23,7 @@ class QuestionsController < ApplicationController
 
     redirect_to question_path(@question)
   rescue => error
-    Rails.logger.error "Creating question error", error
+    Rails.logger.error error
     flash.now[:error] = error.message
     render :new
   end
@@ -35,7 +35,7 @@ class QuestionsController < ApplicationController
 
     redirect_to question_path(@question)
   rescue => error
-    Rails.logger.error "Updating question error", error
+    Rails.logger.error error
     flash.now[:error] = error.message
     render :edit
   end

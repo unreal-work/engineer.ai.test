@@ -8,11 +8,38 @@ class AnswersController < ApplicationController
 
     redirect_to question_path(question)
   rescue => error
-    Rails.logger.error "Creating answer error", error
+    Rails.logger.error error
     flash.now[:error] = error.message
     redirect_to questions_path
   end
 
+  def vote_up
+    answer = Answer.find_by!(id: params[:id])
+
+    vote = answer.votes.find_or_initialize_by(user: current_user)
+    vote.value = true
+    vote.save!
+
+    redirect_to question_path(answer.question_id)
+  rescue => error
+    Rails.logger.error error
+    flash.now[:error] = error.message
+    redirect_to questions_path
+  end
+
+  def vote_down
+    answer = Answer.find_by!(id: params[:id])
+
+    vote = answer.votes.find_or_initialize_by(user: current_user)
+    vote.value = false
+    vote.save!
+
+    redirect_to question_path(answer.question_id)
+  rescue => error
+    Rails.logger.error error
+    flash.now[:error] = error.message
+    redirect_to questions_path
+  end
   private
 
   def answer_params

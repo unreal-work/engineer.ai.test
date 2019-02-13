@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :answers, only: [:create] do
-
+    get :vote_up, on: :member
+    get :vote_down, on: :member
   end
 end
